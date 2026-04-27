@@ -2,7 +2,6 @@
 require 'db.php';
 $id = $_GET['id'];
 
-// Fetch current data
 $stmt = $pdo->prepare("SELECT * FROM students WHERE id = ?");
 $stmt->execute([$id]);
 $student = $stmt->fetch();
@@ -14,9 +13,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Edit Student</h1>
+
 <form method="POST">
-    <input type="text" name="name" value="<?= $student['name'] ?>">
-    <input type="email" name="email" value="<?= $student['email'] ?>">
-    <input type="text" name="course" value="<?= $student['course'] ?>">
+    <input type="text" name="name" value="<?= $student['name'] ?>" required>
+    <input type="email" name="email" value="<?= $student['email'] ?>" required>
+    <input type="text" name="course" value="<?= $student['course'] ?>" required>
     <button type="submit">Update</button>
 </form>
+
+</body>
+</html>

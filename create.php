@@ -10,10 +10,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $pdo->prepare($sql);
     
     if ($stmt->execute(['name' => $name, 'email' => $email, 'course' => $course])) {
-        echo "Student added successfully!";
+        header("Location: index.php");
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Add Student</h1>
 
 <form method="POST">
     <input type="text" name="name" placeholder="Full Name" required>
@@ -21,3 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input type="text" name="course" placeholder="Course" required>
     <button type="submit">Add Student</button>
 </form>
+
+</body>
+</html>
